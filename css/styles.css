@@ -91,66 +91,68 @@ body {
 
 
 <!-- Intro Interface -->
-body.intro {
-  margin: 0;
-  background-color: #000;
-  overflow: hidden;
-  color: #0ff;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  position: relative;
-}
+    body.intro {
+      margin: 0;
+      background-color: #000;
+      overflow: hidden;
+      color: #0ff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+    }
 
-.intro-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('img/pngtree-glowing-sphere-with-a-magical-purple-hue-png-image_19913496.png') no-repeat center center;
-  filter: brightness(0.3);
-  z-index: 0;
-}
+    .intro-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('img/pngtree-glowing-sphere-with-a-magical-purple-hue-png-image_19913496.png') no-repeat center center;
+      background-size: contain;
+      filter: brightness(0.3);
+      z-index: 0;
+    }
 
-.intro-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
 
-.project-title {
-  font-size: 2.5rem;
-  text-shadow: 0 0 10px #0ff;
-  margin-bottom: 2rem;
-}
+    .project-title {
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #0ff;
+      margin-bottom: 2rem;
+    }
 
-.intro-buttons button {
-  background: rgba(0, 255, 255, 0.1);
-  border: 2px solid #0ff;
-  color: #0ff;
-  font-size: 1.2rem;
-  padding: 1rem 2rem;
-  margin: 0 1rem;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-}
+    .intro-buttons button {
+      background: rgba(0, 255, 255, 0.1);
+      border: 2px solid #0ff;
+      color: #0ff;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      margin: 0 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
 
-.intro-buttons button:hover {
-  background: rgba(0, 255, 255, 0.4);
-  transform: scale(1.05);
-}
+    .intro-buttons button:hover {
+      background: rgba(0, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
 
 <!-- Info Interface -->
-body.info {
-    background-color: #000;
-    color: #0ff;
-    font-family: 'Segoe UI', sans-serif;
-    padding: 2rem;
-    position: relative;
-}
+    body.info {
+      background-color: #000;
+      color: #0ff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      position: relative;
+      overflow-y: auto;
+    }
 
 .info-container {
     max-width: 800px;
