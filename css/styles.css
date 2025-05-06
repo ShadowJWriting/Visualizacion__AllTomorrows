@@ -4,51 +4,83 @@ body {
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
   color: #0ff;
+  position: relative;
 }
 
 .container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: auto;
   height: 100vh;
-  gap: 10px;
-}
-
-.graph {
-  border: 1px solid #0ff;
-  margin: 5px;
-  padding: 10px;
-  background: rgba(0, 255, 255, 0.05);
-  transition: transform 0.3s, background 0.3s;
-  cursor: pointer;
-}
-
-.graph:hover {
-  background: rgba(0, 255, 255, 0.15);
-}
-
-.graph.active {
-  transform: scale(1.5);
-  z-index: 10;
-  background: rgba(0, 255, 255, 0.25);
-}
-
-.anatomy-center {
-  grid-column: 2 / 3;
-  grid-row: 1 / 4;
-  display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.anatomy-center img {
-  max-height: 90%;
-  max-width: 100%;
-  filter: drop-shadow(0 0 8px #0ff);
 }
 
 .side-panel {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.graph {
+  border: 1px solid #0ff;
+  margin: 10px 0;
+  padding: 10px;
+  width: 80%;
+  text-align: center;
+  background: rgba(0, 255, 255, 0.05);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.graph:hover {
+  background: rgba(0, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.graph.active {
+  background: rgba(0, 255, 255, 0.25);
+  transform: scale(1.2);
+  z-index: 5;
+}
+
+.anatomy-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.anatomy-center img {
+  max-height: 80%;
+  max-width: 100%;
+  filter: drop-shadow(0 0 8px #0ff);
+}
+
+.navigation {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.nav-arrow {
+  background: rgba(0, 255, 255, 0.1);
+  border: 2px solid #0ff;
+  color: #0ff;
+  font-size: 2rem;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.3s;
+}
+
+.nav-arrow:hover {
+  background: rgba(0, 255, 255, 0.4);
 }
