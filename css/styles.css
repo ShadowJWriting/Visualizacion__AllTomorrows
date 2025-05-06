@@ -110,7 +110,7 @@ body.intro {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('img/pngtree-glowing-sphere-with-a-magical-purple-hue-png-image_19913496.png') no-repeat center center/cover;
+  background: url('img/pngtree-glowing-sphere-with-a-magical-purple-hue-png-image_19913496.png') no-repeat center center;
   filter: brightness(0.3);
   z-index: 0;
 }
@@ -143,3 +143,59 @@ body.intro {
   transform: scale(1.05);
 }
 
+<!-- Info Interface -->
+body.info {
+    background-color: #000;
+    color: #0ff;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2rem;
+    position: relative;
+}
+
+.info-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid #0ff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.info-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 8px #0ff;
+}
+
+.info-section {
+    margin-bottom: 2rem;
+}
+
+    .info-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 5px #0ff;
+    }
+
+    .info-section p {
+        line-height: 1.6;
+        text-align: justify;
+    }
+
+.back-button {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #0ff;
+    color: #0ff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .back-button:hover {
+        background: rgba(0, 255, 255, 0.4);
+    }
