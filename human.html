@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HUD Visual Prototype</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="navigation">
+    <button class="nav-arrow left" onclick="navigate('prev')">◀</button>
+    <button class="nav-arrow right" onclick="navigate('next')">▶</button>
+  </div>
+  
+  <div class="container">
+    <div class="side-panel">
+      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 1</div>
+      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 2</div>
+      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 3</div>
+    </div>
+    <div class="anatomy-center">
+      <img src="img/muscular_system.jpg" alt="Anatomical Model">
+    </div>
+    <div class="side-panel">
+      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 4</div>
+      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 5</div>
+      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 6</div>
+    </div>
+  </div>
 
+  <script src="js/custom.js"></script>
+</body>
+</html>
