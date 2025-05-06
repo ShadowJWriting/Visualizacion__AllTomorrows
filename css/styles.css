@@ -10,9 +10,10 @@ body {
 .container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: auto;
   height: 100vh;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .side-panel {
@@ -55,19 +56,21 @@ body {
 }
 
 .anatomy-center img {
-  max-height: 80%;
-  max-width: 100%;
+  width: 300px; /* Fijado: 300px de ancho para consistencia */
+  height: auto;
   filter: drop-shadow(0 0 8px #0ff);
 }
 
 .navigation {
   position: absolute;
-  width: 100%;
   top: 50%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
+  z-index: 10;
   pointer-events: none;
+  padding: 0 20px;
 }
 
 .nav-arrow {
