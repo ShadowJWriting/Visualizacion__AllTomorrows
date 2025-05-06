@@ -87,3 +87,59 @@ body {
 .nav-arrow:hover {
   background: rgba(0, 255, 255, 0.4);
 }
+
+
+
+<!-- Index Interface -->
+body.intro {
+  margin: 0;
+  background-color: #000;
+  overflow: hidden;
+  color: #0ff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.intro-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/1/17/Globe_blue_black_background.jpg') no-repeat center center/cover;
+  filter: brightness(0.3);
+  z-index: 0;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.project-title {
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px #0ff;
+  margin-bottom: 2rem;
+}
+
+.intro-buttons button {
+  background: rgba(0, 255, 255, 0.1);
+  border: 2px solid #0ff;
+  color: #0ff;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.intro-buttons button:hover {
+  background: rgba(0, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
