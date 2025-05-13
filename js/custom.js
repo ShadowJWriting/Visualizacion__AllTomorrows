@@ -18,7 +18,21 @@ function closeGraph() {
     graphModal.classList.add('hidden');
 }
 
+document.addEventListener('keydown', (event) => {
+    const graphModal = document.getElementById('graphModal');
+    if (event.key === 'Escape' && !graphModal.classList.contains('hidden')) {
+        closeGraph();
+    }
+});
 
+function outsideClick(event) {
+    const modalContent = document.getElementById('modalContent');
+    if (!modalContent.contains(event.target)) {
+        closeGraph();
+    }
+}
+
+// Navegación entre páginas
 const pages = ["human", "cyborg", "astralis", "luminis", "gravital"];
 
 function navigate(direction) {
@@ -33,6 +47,7 @@ function navigate(direction) {
     }
 }
 
+// Inicialización
 window.addEventListener('DOMContentLoaded', () => {
     const activeGraph = document.querySelector('.graph.active');
     if (!activeGraph) {
