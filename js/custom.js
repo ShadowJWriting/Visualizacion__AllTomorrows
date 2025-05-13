@@ -1,10 +1,23 @@
 function focusGraph(el) {
-  document.querySelectorAll('.graph').forEach(g => g.classList.remove('active'));
+    document.querySelectorAll('.graph').forEach(g => g.classList.remove('active'));
     el.classList.add('active');
-    if (el.dataset.id) {
-        window.open(el.dataset.id, '_blank');
+
+    const graphSrc = el.dataset.id;
+    if (graphSrc) {
+        const graphModal = document.getElementById('graphModal');
+        const graphFrame = document.getElementById('graphFrame');
+        graphFrame.src = graphSrc;
+        graphModal.classList.remove('hidden');
     }
 }
+
+function closeGraph() {
+    const graphModal = document.getElementById('graphModal');
+    const graphFrame = document.getElementById('graphFrame');
+    graphFrame.src = '';
+    graphModal.classList.add('hidden');
+}
+
 
 const pages = ["human", "cyborg", "astralis", "luminis", "gravital"];
 
@@ -20,16 +33,13 @@ function navigate(direction) {
     }
 }
 
-// Ocultar flechas según posición
 window.addEventListener('DOMContentLoaded', () => {
-    // Seleccionar automáticamente el primer gráfico si ninguno está activo
     const activeGraph = document.querySelector('.graph.active');
     if (!activeGraph) {
         const firstGraph = document.querySelector('.graph');
         if (firstGraph) focusGraph(firstGraph);
     }
 
-    // Flechas
     const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
     const currentIndex = pages.indexOf(currentPage);
 

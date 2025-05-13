@@ -14,7 +14,10 @@
 
     <div class="container">
         <div class="side-panel">
-            <div class="graph" data-id="grafico-cyborg.html" onclick="focusGraph(this)">📊 Gráfico Cyborg</div>
+            <div class="graph" data-id="grafico-cybord.html" onclick="focusGraph(this)">
+                📊 Gráfico Cyborg
+                <iframe src="grafico-cyborg.html" style="width: 100%; height: 150px; pointer-events: none;"></iframe>
+            </div>
             <div class="graph" onclick="focusGraph(this)">📊 Gráfico 2</div>
             <div class="graph" onclick="focusGraph(this)">📊 Gráfico 3</div>
         </div>
@@ -25,6 +28,13 @@
             <div class="graph" onclick="focusGraph(this)">📊 Gráfico 4</div>
             <div class="graph" onclick="focusGraph(this)">📊 Gráfico 5</div>
             <div class="graph" onclick="focusGraph(this)">📊 Gráfico 6</div>
+        </div>
+    </div>
+
+    <div id="graphModal" class="graph-modal hidden">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeGraph()">✖</button>
+            <iframe id="graphFrame" src="" frameborder="0"></iframe>
         </div>
     </div>
 
