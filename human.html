@@ -29,12 +29,15 @@
     </div>
 
     <div class="audio-player">
-        <audio id="audio" src="audio/prueba.wav"></audio>
+        <audio id="audio" controls>
+            <source src="audio/prueba.wav" type="audio/wav">
+        </audio>
         <div class="controls">
             <button id="playPauseBtn">▶</button>
             <input type="range" id="progressBar" value="0" min="0" step="1">
         </div>
     </div>
+
 
     <script src="js/custom.js"></script>
     <script src="js/audio.js"></script>
