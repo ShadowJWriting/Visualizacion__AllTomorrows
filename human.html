@@ -14,9 +14,9 @@
 
     <div class="container">
         <div class="side-panel">
-            <div class="graph" data-id="grafico-cyborg.html" onclick="focusGraph(this)">
-                📊 Gráfico Cyborg
-                <iframe src="grafico-cyborg.html" style="width: 100%; height: 150px; pointer-events: none;"></iframe>
+            <div class="graph" data-id="graficoHumanos(1).html" onclick="focusGraph(this)">
+                📊 Población
+                <iframe src="graficoHumanos(1).html" style="width: 100%; height: 150px; pointer-events: none;"></iframe>
             </div>
             <div class="graph" data-id="grafico2.html" onclick="focusGraph(this)">📊 Gráfico 2</div>
             <div class="graph" data-id="grafico3.html" onclick="focusGraph(this)">📊 Gráfico 3</div>
@@ -29,6 +29,23 @@
             <div class="graph" data-id="grafico5.html" onclick="focusGraph(this)">📊 Gráfico 5</div>
             <div class="graph" data-id="grafico6.html" onclick="focusGraph(this)">📊 Gráfico 6</div>
         </div>
+    </div>
+
+    <!-- Recuadros de órganos -->
+    <div class="organs-row">
+        <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
+            <img src="img/Iconos/Figura.png" alt="Corazón">
+            <p>Corazón</p>
+        </div>
+        <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
+            <img src="img/Iconos/Figura.png" alt="Cerebro">
+            <p>Cerebro</p>
+        </div>
+        <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
+            <img src="img/Iconos/Figura.png" alt="Pulmones">
+            <p>Pulmones</p>
+        </div>
+        <!-- Agrega más órganos según lo necesites -->
     </div>
 
     <!-- Modal para los gráficos -->

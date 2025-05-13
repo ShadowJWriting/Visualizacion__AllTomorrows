@@ -36,6 +36,17 @@ function outsideClick(event) {
     }
 }
 
+//Gráfico modal - órganos
+
+function focusOrgan(el) {
+    const organImg = el.dataset.img;
+    if (organImg) {
+        const graphModal = document.getElementById('graphModal');
+        const graphFrame = document.getElementById('graphFrame');
+        graphFrame.src = organImg;
+        graphModal.classList.add('show');
+    }
+}
 
 // Navegación entre páginas
 const pages = ["human", "cyborg", "astralis", "luminis", "gravital"];
