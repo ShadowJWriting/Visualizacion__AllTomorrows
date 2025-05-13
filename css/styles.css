@@ -78,22 +78,27 @@ body {
 }
 
 .nav-arrow {
-  background: rgba(0, 255, 255, 0.1);
-  border: 2px solid #0ff;
-  color: #0ff;
-  font-size: 1.5rem;
-  padding: 0.4em 0.8em;
-  z-index: 20;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: background 0.3s;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #0ff;
+    color: #0ff;
+    font-size: 1.5rem;
+    padding: 0.4em 0.8em;
+    z-index: 20;
+    cursor: pointer;
+    transition: background 0.3s;
+    pointer-events: auto;
 }
 
     .nav-arrow.left {
+        left: 20px;
         margin-left: 1rem;
     }
 
     .nav-arrow.right {
+        right: 20px;
         margin-right: 1rem;
     }
 
