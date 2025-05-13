@@ -20,33 +20,35 @@
             </div>
             <div class="graph" data-id="grafico2.html" onclick="focusGraph(this)">📊 Gráfico 2</div>
             <div class="graph" data-id="grafico3.html" onclick="focusGraph(this)">📊 Gráfico 3</div>
+
+            <!-- Órganos izquierda -->
+            <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
+                <img src="img/Iconos/Figura.png" alt="Corazón">
+                <p>Corazón</p>
+            </div>
         </div>
+
         <div class="anatomy-center">
             <img src="img/Human.png" alt="Anatomical Model">
         </div>
+
         <div class="side-panel">
             <div class="graph" data-id="grafico4.html" onclick="focusGraph(this)">📊 Gráfico 4</div>
             <div class="graph" data-id="grafico5.html" onclick="focusGraph(this)">📊 Gráfico 5</div>
             <div class="graph" data-id="grafico6.html" onclick="focusGraph(this)">📊 Gráfico 6</div>
+
+            <!-- Órganos derecha -->
+            <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
+                <img src="img/Iconos/Figura.png" alt="Cerebro">
+                <p>Cerebro</p>
+            </div>
+            <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
+                <img src="img/Iconos/Figura.png" alt="Pulmones">
+                <p>Pulmones</p>
+            </div>
         </div>
     </div>
 
-    <!-- Recuadros de órganos -->
-    <div class="organs-row">
-        <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
-            <img src="img/Iconos/Figura.png" alt="Corazón">
-            <p>Corazón</p>
-        </div>
-        <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
-            <img src="img/Iconos/Figura.png" alt="Cerebro">
-            <p>Cerebro</p>
-        </div>
-        <div class="organ" onclick="focusOrgan(this)" data-img="img/Iconos/Figura.png">
-            <img src="img/Iconos/Figura.png" alt="Pulmones">
-            <p>Pulmones</p>
-        </div>
-        <!-- Agrega más órganos según lo necesites -->
-    </div>
 
     <!-- Modal para los gráficos -->
     <div id="graphModal" class="graph-modal" onclick="outsideClick(event)">
