@@ -351,3 +351,29 @@ Modal Interface -->
     .back-button:hover {
         background: rgba(0, 255, 255, 0.4);
     }
+
+<!-- Exit Interface -->
+#exitButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: block;
+    width: 48px;
+    height: 48px;
+    opacity: 0.9;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+    #exitButton:hover {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    #exitButton img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 0 5px #0ff) contrast(1.2);
+        border-radius: 50%;
+    }

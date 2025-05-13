@@ -7,20 +7,24 @@ function focusGraph(el) {
         const graphModal = document.getElementById('graphModal');
         const graphFrame = document.getElementById('graphFrame');
         graphFrame.src = graphSrc;
-        graphModal.classList.remove('hidden');
+        graphModal.classList.add('show');
     }
 }
 
+//Gráfico modal
 function closeGraph() {
     const graphModal = document.getElementById('graphModal');
     const graphFrame = document.getElementById('graphFrame');
-    graphFrame.src = '';
-    graphModal.classList.add('hidden');
+    graphModal.classList.remove('show');
+
+    setTimeout(() => {
+        graphFrame.src = '';
+    }, 300); 
 }
 
 document.addEventListener('keydown', (event) => {
     const graphModal = document.getElementById('graphModal');
-    if (event.key === 'Escape' && !graphModal.classList.contains('hidden')) {
+    if (event.key === 'Escape' && graphModal.classList.contains('show')) {
         closeGraph();
     }
 });
@@ -31,6 +35,7 @@ function outsideClick(event) {
         closeGraph();
     }
 }
+
 
 // Navegación entre páginas
 const pages = ["human", "cyborg", "astralis", "luminis", "gravital"];

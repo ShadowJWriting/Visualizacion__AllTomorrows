@@ -32,7 +32,7 @@
     </div>
 
     <!-- Modal para los gráficos -->
-    <div id="graphModal" class="graph-modal hidden" onclick="outsideClick(event)">
+    <div id="graphModal" class="graph-modal" onclick="outsideClick(event)">
         <div class="modal-content" id="modalContent">
             <button class="close-btn" onclick="closeGraph()">✖</button>
             <iframe id="graphFrame" src="" frameborder="0"></iframe>
@@ -50,6 +50,11 @@
             <input type="range" id="progressBar" value="0" min="0" step="1">
         </div>
     </div>
+    
+    <!-- Botón de salida -->
+    <a href="index.html" id="exitButton" title="Volver al inicio">
+        <img src="img/Iconos/Equis.png" alt="Salir" />
+    </a>
 
     <script src="js/custom.js"></script>
     <script src="js/audio.js"></script>
