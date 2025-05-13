@@ -1,18 +1,22 @@
 function focusGraph(el) {
   document.querySelectorAll('.graph').forEach(g => g.classList.remove('active'));
-  el.classList.add('active');
+    el.classList.add('active');
+    if (el.dataset.id) {
+        window.open(el.dataset.id, '_blank');
+    }
 }
 
 const pages = ["human", "cyborg", "astralis", "luminis", "gravital"];
 
 function navigate(direction) {
-    const next = document.body.dataset.next;
-    const prev = document.body.dataset.prev;
+    const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
+    const currentIndex = pages.indexOf(currentPage);
 
-    if (direction === 'next' && next) {
-        window.location.href = `${next}.html`;
-    } else if (direction === 'prev' && prev) {
-        window.location.href = `${prev}.html`;
+    let targetIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+
+    if (targetIndex >= 0 && targetIndex < pages.length) {
+        const targetPage = pages[targetIndex];
+        window.location.href = `${targetPage}.html`;
     }
 }
 

@@ -10,23 +10,32 @@
     <div class="navigation">
         <button class="nav-arrow right" onclick="navigate('next')">▶</button>
     </div>
-  
-  <div class="container">
-      <div class="side-panel">
-          <div class="graph" data-id="grafico-cyborg.html" onclick="focusGraph(this)">📊 Gráfico Cyborg</div>
-          <div class="graph" onclick="focusGraph(this)">📊 Gráfico 2</div>
-          <div class="graph" onclick="focusGraph(this)">📊 Gráfico 3</div>
-      </div>
-    <div class="anatomy-center">
-      <img src="img/Human.png" alt="Anatomical Model">
-    </div>
-    <div class="side-panel">
-      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 4</div>
-      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 5</div>
-      <div class="graph" onclick="focusGraph(this)">📊 Gráfico 6</div>
-    </div>
-  </div>
 
-  <script src="js/custom.js"></script>
+    <div class="container">
+        <div class="side-panel">
+            <div class="graph" data-id="grafico-cyborg.html" onclick="focusGraph(this)">📊 Gráfico Cyborg</div>
+            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 2</div>
+            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 3</div>
+        </div>
+        <div class="anatomy-center">
+            <img src="img/Human.png" alt="Anatomical Model">
+        </div>
+        <div class="side-panel">
+            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 4</div>
+            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 5</div>
+            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 6</div>
+        </div>
+    </div>
+
+    <div class="audio-player">
+        <audio id="audio" src="audio/prueba.wav"></audio>
+        <div class="controls">
+            <button id="playPauseBtn">▶</button>
+            <input type="range" id="progressBar" value="0" min="0" step="1">
+        </div>
+    </div>
+
+    <script src="js/custom.js"></script>
+    <script src="js/audio.js"></script>
 </body>
 </html>
