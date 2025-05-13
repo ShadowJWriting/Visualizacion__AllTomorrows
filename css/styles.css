@@ -2,7 +2,6 @@ body {
   margin: 0;
   background-color: #000;
   font-family: 'Segoe UI', sans-serif;
-  overflow: hidden;
   color: #0ff;
   position: relative;
 }
@@ -106,7 +105,7 @@ body {
   background: rgba(0, 255, 255, 0.4);
 }
 
-<!-- Audio Interface -->
+/* Audio Interface */
 .audio-player {
     position: fixed;
     bottom: 20px;
@@ -158,8 +157,7 @@ body {
     }
 
 
-<!--
-Modal Interface -->
+/* Modal Interface */
 .graph-modal {
     position: fixed;
     top: 0;
@@ -225,7 +223,7 @@ Modal Interface -->
 
 
 
-<!-- Intro Interface -->
+/* Intro Interface */
     body.intro {
       margin: 0;
       background-color: #000;
@@ -294,7 +292,7 @@ Modal Interface -->
 }
 
 
-<!-- Info Interface -->
+/* Info Interface */
     body.info {
       background-color: #000;
       color: #0ff;
@@ -352,7 +350,7 @@ Modal Interface -->
         background: rgba(0, 255, 255, 0.4);
     }
 
-<!-- Exit Interface -->
+/* Exit Interface */
 #exitButton {
     position: fixed;
     top: 20px;
