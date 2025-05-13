@@ -6,24 +6,32 @@ function focusGraph(el) {
 const pages = ["human", "cyborg", "astralis", "luminis", "gravital"];
 
 function navigate(direction) {
-  const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
-  const currentIndex = pages.indexOf(currentPage);
+    const next = document.body.dataset.next;
+    const prev = document.body.dataset.prev;
 
-  if (direction === 'next' && currentIndex < pages.length - 1) {
-    window.location.href = pages[currentIndex + 1] + '.html';
-  } else if (direction === 'prev' && currentIndex > 0) {
-    window.location.href = pages[currentIndex - 1] + '.html';
-  }
+    if (direction === 'next' && next) {
+        window.location.href = `${next}.html`;
+    } else if (direction === 'prev' && prev) {
+        window.location.href = `${prev}.html`;
+    }
 }
 
 // Ocultar flechas según posición
 window.addEventListener('DOMContentLoaded', () => {
-  const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
-  const currentIndex = pages.indexOf(currentPage);
+    // Seleccionar automáticamente el primer gráfico si ninguno está activo
+    const activeGraph = document.querySelector('.graph.active');
+    if (!activeGraph) {
+        const firstGraph = document.querySelector('.graph');
+        if (firstGraph) focusGraph(firstGraph);
+    }
 
-  const leftArrow = document.querySelector(".nav-arrow.left");
-  const rightArrow = document.querySelector(".nav-arrow.right");
+    // Flechas
+    const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
+    const currentIndex = pages.indexOf(currentPage);
 
-  if (leftArrow && currentIndex === 0) leftArrow.style.display = 'none';
-  if (rightArrow && currentIndex === pages.length - 1) rightArrow.style.display = 'none';
+    const leftArrow = document.querySelector(".nav-arrow.left");
+    const rightArrow = document.querySelector(".nav-arrow.right");
+
+    if (leftArrow && currentIndex === 0) leftArrow.style.display = 'none';
+    if (rightArrow && currentIndex === pages.length - 1) rightArrow.style.display = 'none';
 });

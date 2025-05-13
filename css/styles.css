@@ -43,11 +43,13 @@ body {
   transform: scale(1.05);
 }
 
-.graph.active {
-  background: rgba(0, 255, 255, 0.25);
-  transform: scale(1.2);
-  z-index: 5;
-}
+    .graph.active {
+        background: rgba(0, 255, 255, 0.25);
+        transform: scale(1.2);
+        box-shadow: 0 0 20px #0ff;
+        border-color: #fff;
+        z-index: 5;
+    }
 
 .anatomy-center {
   display: flex;
@@ -119,12 +121,13 @@ body {
       z-index: 0;
     }
 
-    .intro-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 90vw;
-    }
+.intro-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 90vw;
+    animation: fadeIn 2s ease-out;
+}
 
     .project-title {
       font-size: 2.5rem;
@@ -147,6 +150,19 @@ body {
       background: rgba(0, 255, 255, 0.4);
       transform: scale(1.05);
     }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 <!-- Info Interface -->
     body.info {
