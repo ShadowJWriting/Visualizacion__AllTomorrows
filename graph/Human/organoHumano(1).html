@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órgano: Corazón (Corte Anatómico)</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ccf;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .organ-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .organ-title {
+            font-size: 2.5rem;
+            color: #0ff;
+            text-align: center;
+            text-shadow: 0 0 8px #0ff, 0 0 12px #09f;
+            margin-bottom: 2rem;
+        }
+
+        /* Estilo de pasos */
+        .step {
+            margin: 2.5rem 0;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 255, 255, 0.04);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            gap: 1.5rem;
+            opacity: 0;
+        }
+
+        .organ-image-container {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .organ-image {
+            width: 100%;
+            max-width: 600px;
+            border: 2px solid #0ff;
+            border-radius: 1rem;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+            .organ-image:hover {
+                transform: scale(1.03);
+            }
+
+        .image-caption {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #88ccff;
+            text-shadow: 0 0 4px #09f;
+        }
+
+        /* Animaciones escalonadas */
+        .step1 .box {
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .step2 .box {
+            animation: fadeInRight 0.6s ease 0.5s forwards;
+        }
+
+        .step3 .box {
+            animation: fadeInLeft 0.6s ease 1s forwards;
+        }
+
+        .step4 .box {
+            animation: fadeInRight 0.6s ease 1.5s forwards;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Elemento decorativo: forma con número */
+        .shape {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #0ff, #09f);
+            transform: skew(20deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            border-radius: 0.5rem;
+        }
+
+        .number {
+            transform: skew(-20deg);
+            font-size: 2rem;
+            color: #000;
+            font-weight: bold;
+            text-shadow: 0 0 4px #fff;
+        }
+
+        /* Contenido textual */
+        .content {
+            flex: 1;
+        }
+
+            .content h3 {
+                margin: 0;
+                font-size: 1.5rem;
+                color: #0ff;
+                text-shadow: 0 0 5px #0ff;
+            }
+
+            .content p {
+                margin-top: 0.5rem;
+                line-height: 1.6;
+            }
+
+        /* Icono decorativo */
+        .icon {
+            color: #0ff;
+            text-shadow: 0 0 6px #0ff;
+        }
+
+        .material-icons.md-56 {
+            font-size: 56px;
+            padding: 0 0.5rem;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .shape {
+                margin-bottom: 1rem;
+            }
+
+            .icon {
+                margin-top: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="organ-page">
+    <div class="organ-container">
+        <h2 class="organ-title">🫀 Corazón</h2>
+
+        <div class="organ-image-container">
+            <img src="../../img/Gravitals.png" alt="Corte anatómico del corazón" class="organ-image">
+        </div>
+
+        <div class="step step1">
+            <div class="box shape-1">
+                <div class="shape"><div class="number"><h1>01</h1></div></div>
+                <div class="content">
+                    <h3>¿Qué es?</h3>
+                    <p>El corazón es un órgano muscular fundamental que bombea sangre a través del sistema circulatorio.</p>
+                </div>
+                <div class="icon"><i class="material-icons md-56">&#xE91D;</i></div>
+            </div>
+        </div>
+
+        <div class="step step2">
+            <div class="box shape-2">
+                <div class="shape"><div class="number"><h1>02</h1></div></div>
+                <div class="content">
+                    <h3>Partes</h3>
+                    <p>Compuesto por 4 cavidades: 2 aurículas y 2 ventrículos que se coordinan para impulsar sangre.</p>
+                </div>
+                <div class="icon"><i class="material-icons md-56">&#xE54F;</i></div>
+            </div>
+        </div>
+
+        <div class="step step3">
+            <div class="box shape-3">
+                <div class="shape"><div class="number"><h1>02</h1></div></div>
+                <div class="content">
+                    <h3>Función principal</h3>
+                    <p>Transporta oxígeno, nutrientes y hormonas a los tejidos y retira dióxido de carbono.</p>
+                </div>
+                <div class="icon"><i class="material-icons md-56">&#xE54F;</i></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

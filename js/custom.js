@@ -1,3 +1,4 @@
+// Gráfico modal
 function focusGraph(el) {
     document.querySelectorAll('.graph').forEach(g => g.classList.remove('active'));
     el.classList.add('active');
@@ -11,7 +12,6 @@ function focusGraph(el) {
     }
 }
 
-//Gráfico modal
 function closeGraph() {
     const graphModal = document.getElementById('graphModal');
     const graphFrame = document.getElementById('graphFrame');
@@ -19,13 +19,15 @@ function closeGraph() {
 
     setTimeout(() => {
         graphFrame.src = '';
-    }, 300); 
+    }, 300);
 }
 
 document.addEventListener('keydown', (event) => {
     const graphModal = document.getElementById('graphModal');
-    if (event.key === 'Escape' && graphModal.classList.contains('show')) {
-        closeGraph();
+    const organModal = document.getElementById('organModal');
+    if (event.key === 'Escape') {
+        if (graphModal.classList.contains('show')) closeGraph();
+        if (organModal.classList.contains('show')) closeOrgan();
     }
 });
 
@@ -36,16 +38,33 @@ function outsideClick(event) {
     }
 }
 
-//Gráfico modal - órganos
-
+// Órganos: cargar con iframe
 function focusOrgan(el) {
-    const organImg = el.dataset.img;
-    if (organImg) {
-        const graphModal = document.getElementById('graphModal');
-        const graphFrame = document.getElementById('graphFrame');
-        graphFrame.src = organImg;
-        graphModal.classList.add('show');
+    const organSrc = el.dataset.organSrc;
+    const organContent = document.getElementById('organContent');
+    const organModal = document.getElementById('organModal');
+
+    if (organSrc) {
+        organContent.innerHTML = `
+            <iframe src="${organSrc}" frameborder="0" style="width:100%; height:90vh;"></iframe>
+        `;
+        organModal.classList.add('show');
     }
+}
+
+// Cierre de modal de órganos
+function closeOrganModal(event) {
+    const content = document.getElementById('organModalContent');
+    if (!content.contains(event.target)) {
+        closeOrgan();
+    }
+}
+
+function closeOrgan() {
+    const organModal = document.getElementById('organModal');
+    const organContent = document.getElementById('organContent');
+    organModal.classList.remove('show');
+    organContent.innerHTML = '';
 }
 
 // Navegación entre páginas
@@ -63,14 +82,8 @@ function navigate(direction) {
     }
 }
 
-// Inicialización
+// Inicialización de navegación 
 window.addEventListener('DOMContentLoaded', () => {
-    const activeGraph = document.querySelector('.graph.active');
-    if (!activeGraph) {
-        const firstGraph = document.querySelector('.graph');
-        if (firstGraph) focusGraph(firstGraph);
-    }
-
     const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
     const currentIndex = pages.indexOf(currentPage);
 
