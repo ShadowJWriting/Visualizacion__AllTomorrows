@@ -13,21 +13,95 @@
     </div>
 
     <div class="container">
-        <div class="side-panel">
-            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 1</div>
-            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 2</div>
-            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 3</div>
+        <!-- Gráficos izquierda -->
+        <div class="panel graphs">
+            <div class="graph" data-id="graph/Human/graficoHumanos(1).html" onclick="focusGraph(this)">
+                <h3>Población</h3>
+                <img src="img/Iconos/StarPeople.png" alt="Gráfico Población">
+            </div>
+            <div class="graph" data-id="graph/Human/graficoHumanos(2).html" onclick="focusGraph(this)">
+                <h3>Stats físicos</h3>
+                <img src="img/Iconos/StarPeople.png" alt="Gráfico 2">
+            </div>
         </div>
+
+        <!-- Órganos izquierda -->
+        <div class="panel organs">
+            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(1).html">
+                <img src="img/Iconos/Figura.png" alt="Corazón" />
+                <p>Corazón</p>
+            </div>
+            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(2).html">
+                <img src="img/Iconos/Figura.png" alt="Hígado" />
+                <p>Hígado</p>
+            </div>
+        </div>
+
+        <!-- Modelo anatómico central -->
         <div class="anatomy-center">
-            <img src="img/Astralis.png" alt="Anatomical Model">
+            <img src="img/Astralis.png" alt="Anatomical Model" />
         </div>
-        <div class="side-panel">
-            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 4</div>
-            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 5</div>
-            <div class="graph" onclick="focusGraph(this)">📊 Gráfico 6</div>
+
+        <!-- Órganos derecha -->
+        <div class="panel organs">
+            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(3).html">
+                <img src="img/Iconos/Figura.png" alt="Cerebro" />
+                <p>Cerebro</p>
+            </div>
+            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(4).html">
+                <img src="img/Iconos/Figura.png" alt="Pulmones" />
+                <p>Pulmones</p>
+            </div>
+        </div>
+
+        <!-- Gráficos derecha -->
+        <div class="panel graphs">
+            <div class="graph" data-id="graph/Human/graficoHumanos(3).html" onclick="focusGraph(this)">
+                <h3>Evolución cultural</h3>
+                <img src="img/Iconos/StarPeople.png" alt="Gráfico 3">
+            </div>
+            <div class="graph" data-id="Mapa.html" onclick="focusGraph(this)">
+                <h3>Mapa</h3>
+                <img src="img/Iconos/StarPeople.png" alt="Gráfico 4">
+            </div>
         </div>
     </div>
 
+    <!-- Modal para gráficos -->
+    <div id="graphModal" class="graph-modal" onclick="outsideClick(event)">
+        <div class="modal-content" id="modalContent">
+            <button class="close-btn" onclick="closeGraph()">✖</button>
+            <iframe id="graphFrame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Modal para órganos -->
+    <div id="organModal" class="graph-modal" onclick="closeOrganModal(event)">
+        <div class="modal-content" id="organModalContent">
+            <button class="close-btn" onclick="closeOrgan()">✖</button>
+            <div id="organContent"></div>
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player">
+        <audio id="audio">
+            <source src="audio/prueba.wav" type="audio/wav" />
+        </audio>
+        <div class="controls">
+            <button id="playPauseBtn">▶</button>
+            <input type="range" id="progressBar" value="0" min="0" step="0.1" />
+            <span id="currentTime" style="color: white; font-size: 0.9rem;">0:00</span> /
+            <span id="duration" style="color: white; font-size: 0.9rem;">0:00</span>
+        </div>
+    </div>
+
+    <!-- Botón salir -->
+    <a href="index.html" id="exitButton" title="Volver al inicio">
+        <img src="img/Iconos/Equis.png" alt="Salir" />
+    </a>
+
     <script src="js/custom.js"></script>
+    <script src="js/audio.js"></script>
 </body>
 </html>

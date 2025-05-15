@@ -16,12 +16,12 @@
         <!-- Gráficos izquierda -->
         <div class="panel graphs">
             <div class="graph" data-id="graph/Human/graficoHumanos(1).html" onclick="focusGraph(this)">
+                <h3>Población</h3>
                 <img src="img/Iconos/StarPeople.png" alt="Gráfico Población">
-                <p>📊 Población</p>
             </div>
-            <div class="graph" data-id="grafico2.html" onclick="focusGraph(this)">
+            <div class="graph" data-id="graph/Human/graficoHumanos(2).html" onclick="focusGraph(this)">
+                <h3>Stats físicos</h3>
                 <img src="img/Iconos/StarPeople.png" alt="Gráfico 2">
-                <p>📊 Gráfico 2</p>
             </div>
         </div>
 
@@ -56,13 +56,13 @@
 
         <!-- Gráficos derecha -->
         <div class="panel graphs">
-            <div class="graph" data-id="grafico4.html" onclick="focusGraph(this)">
+            <div class="graph" data-id="graph/Human/graficoHumanos(3).html" onclick="focusGraph(this)">
+                <h3>Evolución cultural</h3>
                 <img src="img/Iconos/StarPeople.png" alt="Gráfico 3">
-                <p>📊 Gráfico 3</p>
             </div>
-            <div class="graph" data-id="grafico5.html" onclick="focusGraph(this)">
+            <div class="graph" data-id="Mapa.html" onclick="focusGraph(this)">
+                <h3>Mapa</h3>
                 <img src="img/Iconos/StarPeople.png" alt="Gráfico 4">
-                <p>📊 Gráfico 4</p>
             </div>
         </div>
     </div>
@@ -74,12 +74,12 @@
             <iframe id="graphFrame" src="" frameborder="0"></iframe>
         </div>
     </div>
-
+        
     <!-- Modal para órganos -->
     <div id="organModal" class="graph-modal" onclick="closeOrganModal(event)">
         <div class="modal-content" id="organModalContent">
             <button class="close-btn" onclick="closeOrgan()">✖</button>
-            <div id="organContent" style="max-width: 90%; max-height: 90%; overflow-y: auto;"></div>
+            <div id="organContent"></div>
         </div>
     </div>
 
