@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #000;
+    background-color: #101010;
     font-family: 'Segoe UI', sans-serif;
     color: #0ff;
     position: relative;
@@ -130,6 +130,154 @@ body {
 .nav-arrow:hover {
   background: rgba(0, 255, 255, 0.4);
 }
+
+/* Prueba */
+.hologram-wrapper {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    align-items: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -500;
+}
+
+.holo-center {
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px #0ff);
+}
+
+.holo-glow {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0,255,255,0.25) 0%, rgba(0,255,255,0.1) 50%, transparent 80%);
+    opacity: 0.4;
+    filter: blur(100px);
+    animation: pulseGlow 4s ease-in-out infinite;
+    z-index: -500;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.3;
+        filter: blur(40px);
+    }
+
+    50% {
+        opacity: 0.5;
+        filter: blur(100px);
+    }
+}
+
+
+/* Capsule Interface*/
+.holographic-capsule {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    height: 280px;
+    transform: translate(-50%, -50%);
+    z-index: -100;
+    animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.capsule-shell {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid #0ff;
+    box-shadow: 0 0 40px #0ff, 0 0 80px #0ff inset;
+    animation: shellOpen 3s ease forwards;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle, rgba(0,255,255,0.1), transparent 60%);
+    backdrop-filter: blur(3px);
+}
+
+.capsule-core {
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, #0ff 0%, transparent 60%);
+    border-radius: 50%;
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    filter: blur(8px);
+    animation: corePulse 3s ease-in-out infinite;
+}
+
+.capsule-projection {
+    position: absolute;
+    top: -600px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 800px;
+    background: radial-gradient(circle at center, rgba(0,255,255,0.25) 0%, rgba(0,255,255,0.05) 80%, transparent 100%);
+    opacity: 0.3;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: -1;
+    animation: projectionFade 4s ease-in-out infinite;
+}
+
+@keyframes projectionFade {
+    0%, 100% {
+        opacity: 0.25;
+        filter: blur(50px);
+    }
+
+    50% {
+        opacity: 0.4;
+        filter: blur(70px);
+    }
+}
+
+
+@keyframes shellOpen {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes corePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 30px #0ff, 0 0 60px #0ff inset;
+    }
+
+    50% {
+        box-shadow: 0 0 60px #0ff, 0 0 120px #0ff inset;
+    }
+}
+
 
 /* Organ Interface */
 .organs-row {
@@ -327,47 +475,107 @@ body {
       position: relative;
     }
 
-    .intro-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('img/pngtree-glowing-sphere-with-a-magical-purple-hue-png-image_19913496.png') no-repeat center center;
-      background-size: contain;
-      filter: brightness(0.3);
-      z-index: 0;
+        body.intro::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid #0ff;
+            box-shadow: 0 0 30px #0ff, inset 0 0 30px #0ff;
+            z-index: 0;
+            pointer-events: none;
+            animation: borderPulse 4s infinite ease-in-out;
+            border-radius: 20px;
+        }
+
+@keyframes borderPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px #0ff, inset 0 0 20px #0ff;
     }
 
+    50% {
+        box-shadow: 0 0 40px #0ff, inset 0 0 40px #0ff;
+    }
+}
+
+
+.intro-background {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    right: -10%;
+    bottom: -10%;
+    background: url('img/Sphere.png') no-repeat center center;
+    background-size: cover;
+    filter: brightness(0.3) drop-shadow(0 0 80px #0ff);
+    z-index: 0;
+    opacity: 0.7;
+}
+
+    .intro-background::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1000px;
+        height: 1000px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent 80%);
+        filter: blur(120px);
+        z-index: -1;
+        animation: pulseField 6s ease-in-out infinite;
+    }
+
+
+
 .intro-content {
-    position: relative;
+    position: absolute;
     z-index: 1;
     text-align: center;
     max-width: 90vw;
     animation: fadeIn 2s ease-out;
 }
 
-    .project-title {
-      font-size: 2.5rem;
-      text-shadow: 0 0 10px #0ff;
-      margin-bottom: 2rem;
-    }
+.project-title {
+    font-size: 3.5rem;
+    text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    align-items: center;
+}
 
-    .intro-buttons button {
-      background: rgba(0, 255, 255, 0.1);
-      border: 2px solid #0ff;
-      color: #0ff;
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
-      margin: 0 1rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
+.intro-buttons button {
+    background: rgba(0, 255, 255, 0.15);
+    border: 2px solid #0ff;
+    color: #0ff;
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    margin: 0 1rem;
+    cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
 
     .intro-buttons button:hover {
-      background: rgba(0, 255, 255, 0.4);
-      transform: scale(1.05);
+        background: rgba(0, 255, 255, 0.35);
+        transform: scale(1.1);
+        box-shadow: 0 0 30px #0ff;
     }
+
+@keyframes pulseField {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.5;
+    }
+}
 
 @keyframes fadeIn {
     from {
@@ -381,6 +589,44 @@ body {
     }
 }
 
+/* Particles Interface*/
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: translateY(-100px) scale(1.2);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-200px) scale(1);
+        opacity: 0;
+    }
+}
 
 /* Info Interface */
     body.info {
