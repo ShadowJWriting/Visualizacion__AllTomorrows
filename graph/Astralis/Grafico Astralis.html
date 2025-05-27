@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Población de Astralis a Través del Tiempo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Courier New', monospace;
+        }
+        #chart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background:
+                radial-gradient(circle at center, rgba(0,10,20,1) 0%, rgba(0,5,10,1) 100%),
+                linear-gradient(to bottom,
+                    rgba(64,224,208,0.03) 1px,
+                    transparent 1px);
+            background-size: 100% 100%, 8px 8px;
+        }
+        .title {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #40E0D0; /* Aguamarina */
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px #40E0D0;
+            z-index: 100;
+            letter-spacing: 2px;
+        }
+        .event-mark {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1E90FF; /* Azul dodger */
+            font-size: 1.5rem;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            text-shadow: 0 0 8px #1E90FF;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div id="chart-container">
+        <div class="title">POBLACIÓN DE ASTRALIS A TRAVÉS DEL TIEMPO</div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        // Configuración estilo terminal futurista
+        Chart.defaults.color = '#40E0D0'; /* Aguamarina */
+        Chart.defaults.borderColor = 'rgba(64, 224, 208, 0.2)';
+        Chart.defaults.font.family = "'Courier New', monospace";
+
+        // Estimación de la población humana para los siglos futuros (solo para referencia)
+        const humanPopulationMillions = [10000, 11000, 12000, 13000, 10000, 8000, 5000];
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['XXI D.Qu', 'XXIII D.Qu', 'XXV D.Qu', 'XXVII D.Qu', 'XXX D.Qu', 'XL D.Qu', 'L D.Qu'],
+                datasets: [{
+                    label: 'Población de Astralis (millones)',
+                    data: [
+                        humanPopulationMillions[0] * 0 / 100,
+                        humanPopulationMillions[1] * 5 / 100,
+                        humanPopulationMillions[2] * 18 / 100,
+                        humanPopulationMillions[3] * 32 / 100,
+                        humanPopulationMillions[4] * 60 / 100,
+                        humanPopulationMillions[5] * 78 / 100,
+                        humanPopulationMillions[6] * 95 / 100
+                    ],
+                    borderColor: '#1E90FF', /* Azul dodger */
+                    borderWidth: 3,
+                    backgroundColor: 'rgba(30, 144, 255, 0.1)', /* Azul dodger con transparencia */
+                    fill: true,
+                    pointBackgroundColor: '#40E0D0', /* Aguamarina */
+                    pointRadius: 2,
+                    pointHoverRadius: 6,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.y;
+                                let cyborgText;
+                                if (value >= 1000) {
+                                    cyborgText = `${(value / 1000).toFixed(1)} billones`;
+                                } else {
+                                    cyborgText = `${value.toFixed(0)} millones`;
+                                }
+                                return `Población de cyborgs: ${cyborgText}`;
+                            },
+                            afterLabel: function(context) {
+                                const century = context.label;
+                                if (century === 'XL') return 'Siglo XL d.C. (Iniciativa Neosintética Global)';
+                                if (century === 'L') return 'Siglo L d.C. (Integración casi total)';
+                            }
+                        },
+                        backgroundColor: 'rgba(0, 10, 20, 0.95)',
+                        titleColor: '#40E0D0', /* Aguamarina */
+                        bodyColor: '#40E0D0', /* Aguamarina */
+                        borderColor: '#1E90FF', /* Azul dodger */
+                        borderWidth: 1,
+                        bodyFont: {
+                            size: 14,
+                            family: "'Courier New', monospace"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'SIGLO (d.C.)',
+                            color: '#40E0D0', /* Aguamarina */
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(64, 224, 208, 0.1)', /* Aguamarina con transparencia */
+                            drawTicks: false
+                        },
+                        ticks: {
+                            color: '#40E0D0' /* Aguamarina */
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'POBLACIÓN DE ASTRALIS',
+                            color: '#40E0D0', /* Aguamarina */
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        min: 0,
+                        grid: {
+                            color: 'rgba(64, 224, 208, 0.1)' /* Aguamarina con transparencia */
+                        },
+                        ticks: {
+                            color: '#40E0D0', /* Aguamarina */
+                            callback: function(value) {
+                                if (value >= 1000) {
+                                    return (value / 1000).toFixed(0) + 'B';
+                                }
+                                return value.toFixed(0) + 'M';
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        hoverBorderColor: '#fff',
+                        hoverBorderWidth: 2
+                    }
+                },
+                animation: {
+                    duration: 3000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+
+        // Efecto de escaneo modificado para la nueva paleta de colores
+        const container = document.getElementById('chart-container');
+        let scanPosition = 0;
+
+        function animateScan() {
+            scanPosition = (scanPosition + 0.5) % 100;
+            container.style.background = `
+                radial-gradient(circle at center, rgba(0,10,20,1) 0%, rgba(0,5,10,1) 100%),
+                linear-gradient(to bottom,
+                    rgba(64,224,208,0.03) 1px,
+                    transparent 1px),
+                linear-gradient(to bottom,
+                    transparent ${scanPosition}%,
+                    rgba(64,224,208,0.05) ${scanPosition}%,
+                    rgba(30,144,255,0.1) ${scanPosition + 5}%,
+                    transparent ${scanPosition + 10}%)`;
+            requestAnimationFrame(animateScan);
+        }
+
+        animateScan();
+    </script>
+</body>
+</html>
