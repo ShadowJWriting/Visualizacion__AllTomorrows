@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+    <script type="module" src="js/ImagesTest.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer@4.1.0"></script>
+
+
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-sphere">
+            <p>Transfiriendo datos...</p>
+            <div class="screen-noise"></div>
+        </div>
+    </div>
     <div class="navigation">
         <button class="nav-arrow left" onclick="navigate('prev')">◀</button>
         <button class="nav-arrow right" onclick="navigate('next')">▶</button>
@@ -37,10 +47,15 @@
             </div>
         </div>
 
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
         <!-- Modelo anatómico central -->
-        <div class="anatomy-center">
-            <img src="img/alienigena2.png" alt="Anatomical Model" />
-        </div>
+        <model-viewer src="FBX/alienigena1.glb"
+                      camera-controls
+                      auto-rotate
+                      alt="Modelo 3D de un alien"
+                      style="width: 50%; height: 100vh;">
+        </model-viewer>
 
         <!-- Órganos derecha -->
         <div class="panel organs">
@@ -74,7 +89,7 @@
             <iframe id="graphFrame" src="" frameborder="0"></iframe>
         </div>
     </div>
-        
+
     <!-- Modal para órganos -->
     <div id="organModal" class="graph-modal" onclick="closeOrganModal(event)">
         <div class="modal-content" id="organModalContent">
@@ -103,5 +118,6 @@
 
     <script src="js/custom.js"></script>
     <script src="js/audio.js"></script>
+
 </body>
 </html>

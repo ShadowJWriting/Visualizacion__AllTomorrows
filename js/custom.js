@@ -93,3 +93,13 @@ window.addEventListener('DOMContentLoaded', () => {
     if (leftArrow && currentIndex === 0) leftArrow.style.display = 'none';
     if (rightArrow && currentIndex === pages.length - 1) rightArrow.style.display = 'none';
 });
+
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loadingScreen");
+    if (loader) {
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 4000); 
+    }
+});
+
