@@ -96,6 +96,8 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add("page-loaded")
 });
 
+
+// Pantalla de carga
 window.addEventListener("load", () => {
     const loader = document.getElementById("loadingScreen");
     if (loader) {
