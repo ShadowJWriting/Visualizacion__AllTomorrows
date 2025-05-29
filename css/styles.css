@@ -223,7 +223,7 @@ model-viewer {
     color: #0ff;
     font-size: 1.5rem;
     padding: 0.4em 0.8em;
-    z-index: 20;
+    z-index: 10000;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
@@ -519,7 +519,7 @@ model-viewer {
     align-items: center;
     gap: 10px;
     box-shadow: 0 0 4px rgba(0, 255, 255, 0.2);
-    z-index: 999;
+    z-index: 10000;
 }
 
 .audio-player .controls {
@@ -984,7 +984,7 @@ model-viewer {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 10000;
     display: block;
     width: 48px;
     height: 48px;
