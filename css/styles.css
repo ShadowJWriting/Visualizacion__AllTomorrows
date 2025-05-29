@@ -42,6 +42,31 @@ h3, p {
     text-shadow: 0 0 2px rgba(0, 255, 255, 0.3);
 }
 
+.page-title {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(0, 255, 255, 0.08);
+    border: 1px solid #0ff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    backdrop-filter: blur(6px);
+}
+
+    .page-title h1 {
+        margin: 0;
+        font-size: 2rem;
+        color: #00ffff;
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
+        animation: blinkText 2s infinite alternate;
+    }
+
+
 .side-panel {
     display: flex;
     padding: 0 10px;
