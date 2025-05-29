@@ -201,15 +201,14 @@ model-viewer {
 }
 
 .navigation {
-    position: absolute;
+    position: fixed;
     top: 50%;
     width: 100%;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
-    pointer-events: none;
     padding: 0 20px;
-    z-index: 10000;
+    z-index: 20000;
 }
 
 .nav-arrow {
