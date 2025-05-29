@@ -19,7 +19,7 @@ body {
     align-items: center;
     position: relative;
     flex-wrap: wrap;
-    z-index: 10000;
+    z-index: 8000;
 }
 
 .panel {
@@ -221,7 +221,7 @@ model-viewer {
     color: #0ff;
     font-size: 1.5rem;
     padding: 0.4em 0.8em;
-    z-index: 15000;
+    z-index: 21000;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
@@ -982,7 +982,7 @@ model-viewer {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 10000;
+    z-index: 5000;
     display: block;
     width: 48px;
     height: 48px;
