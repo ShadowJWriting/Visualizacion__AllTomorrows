@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HUD Visual Prototype</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body class="page-transition">
     <div class="navigation">
-        <button class="nav-arrow left" onclick="navigate('prev')">◀</button>
-        <button class="nav-arrow right" onclick="navigate('next')">▶</button>
+        <button class="nav-arrow left" onclick="navigate('prev')">
+            <img src="img/Iconos/Flecha.png" alt="Anterior" />
+        </button>
+        <button class="nav-arrow right" onclick="navigate('next')">
+            <img src="img/Iconos/Flecha.png" alt="Siguiente" />
+        </button>
     </div>
 
     <div class="container">
@@ -21,35 +25,40 @@
             </div>
             <div class="graph" data-id="graph/Human/graficoHumanos(2).html" onclick="focusGraph(this)">
                 <h3>Stats físicos</h3>
-                <img src="img/Iconos/StarPeople.png" alt="Gráfico 2">
+                <img src="img/Iconos/Figura.png" alt="Gráfico 2">
             </div>
         </div>
 
         <!-- Órganos izquierda -->
         <div class="panel organs">
             <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(1).html">
-                <img src="img/Iconos/Figura.png" alt="Corazón" />
+                <img src="img/Hearth-Icon.png" alt="Corazón" />
                 <p>Corazón</p>
             </div>
             <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(2).html">
-                <img src="img/Iconos/Figura.png" alt="Hígado" />
+                <img src="img/Liver-Icon.png" alt="Hígado" />
                 <p>Hígado</p>
             </div>
         </div>
 
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
         <!-- Modelo anatómico central -->
-        <div class="anatomy-center">
-            <img src="img/Gravitals.png" alt="Anatomical Model" />
-        </div>
+        <model-viewer src="FBX/gravital.glb"
+                      camera-controls
+                      auto-rotate
+                      alt="Modelo 3D de un alien"
+                      style="width: 50%; height: 100vh;">
+        </model-viewer>
 
         <!-- Órganos derecha -->
         <div class="panel organs">
             <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(3).html">
-                <img src="img/Iconos/Figura.png" alt="Cerebro" />
+                <img src="img/Brain-Icon.png" alt="Cerebro" />
                 <p>Cerebro</p>
             </div>
             <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(4).html">
-                <img src="img/Iconos/Figura.png" alt="Pulmones" />
+                <img src="img/Lungs-Icon.png" alt="Pulmones" />
                 <p>Pulmones</p>
             </div>
         </div>
@@ -58,11 +67,11 @@
         <div class="panel graphs">
             <div class="graph" data-id="graph/Human/graficoHumanos(3).html" onclick="focusGraph(this)">
                 <h3>Evolución cultural</h3>
-                <img src="img/Iconos/StarPeople.png" alt="Gráfico 3">
+                <img src="img/Iconos/orbital.png" alt="Gráfico 3">
             </div>
-            <div class="graph" data-id="Mapa.html" onclick="focusGraph(this)">
+            <div class="graph" data-id="graph/Human/graficoHumanos(4).html" onclick="focusGraph(this)">
                 <h3>Mapa</h3>
-                <img src="img/Iconos/StarPeople.png" alt="Gráfico 4">
+                <img src="img/Iconos/qu.png" alt="Gráfico 4">
             </div>
         </div>
     </div>
@@ -103,5 +112,6 @@
 
     <script src="js/custom.js"></script>
     <script src="js/audio.js"></script>
+
 </body>
 </html>

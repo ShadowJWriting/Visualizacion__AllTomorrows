@@ -1,119 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HUD Visual Prototype</title>
-    <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-    <div id="loadingScreen" class="loading-screen">
-        <div class="loading-sphere">
-            <p>Transfiriendo datos...</p>
-            <div class="screen-noise"></div>
-        </div>
-    </div>
-    <div class="navigation">
-        <button class="nav-arrow left" onclick="navigate('prev')">◀</button>
-        <button class="nav-arrow right" onclick="navigate('next')">▶</button>
-    </div>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+   <meta charset="UTF-8" />  
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+   <title>HUD Visual Prototype</title>  
+   <link rel="stylesheet" href="css/styles.css" />  
+</head>  
+<body class="page-transition">  
+   <div class="navigation">  
+       <button class="nav-arrow left" onclick="navigate('prev')">  
+           <img src="img/Iconos/Flecha.png" alt="Anterior" />  
+       </button>  
+       <button class="nav-arrow right" onclick="navigate('next')">  
+           <img src="img/Iconos/Flecha.png" alt="Siguiente" />  
+       </button>  
+   </div>  
 
-    <div class="container">
-        <!-- Gráficos izquierda -->
-        <div class="panel graphs">
-            <div class="graph" data-id="graph/Human/graficoHumanos(1).html" onclick="focusGraph(this)">
-                <h3>Población</h3>
-                <img src="img/Iconos/StarPeople.png" alt="Gráfico Población">
-            </div>
-            <div class="graph" data-id="graph/Human/graficoHumanos(2).html" onclick="focusGraph(this)">
-                <h3>Stats físicos</h3>
-                <img src="img/Iconos/StarPeople.png" alt="Gráfico 2">
-            </div>
-        </div>
+   <div class="container">  
+       <!-- Gráficos izquierda -->  
+       <div class="panel graphs">  
+           <div class="graph" data-id="graph/Human/graficoHumanos(1).html" onclick="focusGraph(this)">  
+               <h3>Población</h3>  
+               <img src="img/Iconos/StarPeople.png" alt="Gráfico Población">  
+           </div>  
+           <div class="graph" data-id="graph/Human/graficoHumanos(2).html" onclick="focusGraph(this)">  
+               <h3>Stats físicos</h3>  
+               <img src="img/Iconos/Figura.png" alt="Gráfico 2">  
+           </div>  
+       </div>  
 
-        <!-- Órganos izquierda -->
-        <div class="panel organs">
-            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(1).html">
-                <img src="img/Iconos/Figura.png" alt="Corazón" />
-                <p>Corazón</p>
-            </div>
-            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(2).html">
-                <img src="img/Iconos/Figura.png" alt="Hígado" />
-                <p>Hígado</p>
-            </div>
-        </div>
+       <!-- Órganos izquierda -->  
+       <div class="panel organs">  
+           <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(1).html">  
+               <img src="img/Hearth-Icon.png" alt="Corazón" />  
+               <p>Corazón</p>  
+           </div>  
+           <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(2).html">  
+               <img src="img/Liver-Icon.png" alt="Hígado" />  
+               <p>Hígado</p>  
+           </div>  
+       </div>  
 
-        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+       <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>  
 
-        <!-- Modelo anatómico central -->
-        <model-viewer src="FBX/alienigena2.glb"
-                      camera-controls
-                      auto-rotate
-                      alt="Modelo 3D de un alien"
-                      style="width: 50%; height: 100vh;">
-        </model-viewer>
+       <!-- Modelo anatómico central -->  
+       <model-viewer src="FBX/alienigena2.glb"  
+                     camera-controls  
+                     auto-rotate  
+                     alt="Modelo 3D de un alien"  
+                     style="width: 50%; height: 100vh;">  
+       </model-viewer>  
 
-        <!-- Órganos derecha -->
-        <div class="panel organs">
-            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(3).html">
-                <img src="img/Iconos/Figura.png" alt="Cerebro" />
-                <p>Cerebro</p>
-            </div>
-            <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(4).html">
-                <img src="img/Iconos/Figura.png" alt="Pulmones" />
-                <p>Pulmones</p>
-            </div>
-        </div>
+       <!-- Órganos derecha -->  
+       <div class="panel organs">  
+           <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(3).html">  
+               <img src="img/Brain-Icon.png" alt="Cerebro" />  
+               <p>Cerebro</p>  
+           </div>  
+           <div class="organ" onclick="focusOrgan(this)" data-organ-src="graph/Human/organoHumano(4).html">  
+               <img src="img/Lungs-Icon.png" alt="Pulmones" />  
+               <p>Pulmones</p>  
+           </div>  
+       </div>  
 
-        <!-- Gráficos derecha -->
-        <div class="panel graphs">
-            <div class="graph" data-id="graph/Human/graficoHumanos(3).html" onclick="focusGraph(this)">
-                <h3>Evolución cultural</h3>
-                <img src="img/Iconos/StarPeople.png" alt="Gráfico 3">
-            </div>
-            <div class="graph" data-id="graph/Human/graficoHumanos(4).html" onclick="focusGraph(this)">
-                <h3>Mapa</h3>
-                <img src="img/Iconos/StarPeople.png" alt="Gráfico 4">
-            </div>
-        </div>
-    </div>
+       <!-- Gráficos derecha -->  
+       <div class="panel graphs">  
+           <div class="graph" data-id="graph/Human/graficoHumanos(3).html" onclick="focusGraph(this)">  
+               <h3>Evolución cultural</h3>  
+               <img src="img/Iconos/orbital.png" alt="Gráfico 3">  
+           </div>  
+           <div class="graph" data-id="graph/Human/graficoHumanos(4).html" onclick="focusGraph(this)">  
+               <h3>Mapa</h3>  
+               <img src="img/Iconos/qu.png" alt="Gráfico 4">  
+           </div>  
+       </div>  
+   </div>  
 
-    <!-- Modal para gráficos -->
-    <div id="graphModal" class="graph-modal" onclick="outsideClick(event)">
-        <div class="modal-content" id="modalContent">
-            <button class="close-btn" onclick="closeGraph()">✖</button>
-            <iframe id="graphFrame" src="" frameborder="0"></iframe>
-        </div>
-    </div>
+   <!-- Modal para gráficos -->  
+   <div id="graphModal" class="graph-modal" onclick="outsideClick(event)">  
+       <div class="modal-content" id="modalContent">  
+           <button class="close-btn" onclick="closeGraph()">✖</button>  
+           <iframe id="graphFrame" src="" frameborder="0"></iframe>  
+       </div>  
+   </div>  
 
-    <!-- Modal para órganos -->
-    <div id="organModal" class="graph-modal" onclick="closeOrganModal(event)">
-        <div class="modal-content" id="organModalContent">
-            <button class="close-btn" onclick="closeOrgan()">✖</button>
-            <div id="organContent"></div>
-        </div>
-    </div>
+   <!-- Modal para órganos -->  
+   <div id="organModal" class="graph-modal" onclick="closeOrganModal(event)">  
+       <div class="modal-content" id="organModalContent">  
+           <button class="close-btn" onclick="closeOrgan()">✖</button>  
+           <div id="organContent"></div>  
+       </div>  
+   </div>  
 
-    <!-- Audio Player -->
-    <div class="audio-player">
-        <audio id="audio">
-            <source src="audio/prueba.wav" type="audio/wav" />
-        </audio>
-        <div class="controls">
-            <button id="playPauseBtn">▶</button>
-            <input type="range" id="progressBar" value="0" min="0" step="0.1" />
-            <span id="currentTime" style="color: white; font-size: 0.9rem;">0:00</span> /
-            <span id="duration" style="color: white; font-size: 0.9rem;">0:00</span>
-        </div>
-    </div>
+   <!-- Audio Player -->  
+   <div class="audio-player">  
+       <audio id="audio">  
+           <source src="audio/prueba.wav" type="audio/wav" />  
+       </audio>  
+       <div class="controls">  
+           <button id="playPauseBtn">▶</button>  
+           <input type="range" id="progressBar" value="0" min="0" step="0.1" />  
+           <span id="currentTime" style="color: white; font-size: 0.9rem;">0:00</span> /  
+           <span id="duration" style="color: white; font-size: 0.9rem;">0:00</span>  
+       </div>  
+   </div>  
 
-    <!-- Botón salir -->
-    <a href="index.html" id="exitButton" title="Volver al inicio">
-        <img src="img/Iconos/Equis.png" alt="Salir" />
-    </a>
+   <!-- Botón salir -->  
+   <a href="index.html" id="exitButton" title="Volver al inicio">  
+       <img src="img/Iconos/Equis.png" alt="Salir" />  
+   </a>  
 
-    <script src="js/custom.js"></script>
-    <script src="js/audio.js"></script>
+   <script src="js/custom.js"></script>  
+   <script src="js/audio.js"></script>  
 
-</body>
+</body>  
 </html>

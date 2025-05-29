@@ -78,7 +78,14 @@ function navigate(direction) {
 
     if (targetIndex >= 0 && targetIndex < pages.length) {
         const targetPage = pages[targetIndex];
-        window.location.href = `${targetPage}.html`;
+
+        // Agrega efecto de salida y luego redirecciona
+        document.body.classList.remove("page-loaded");
+        document.body.classList.add("page-transition");
+
+        setTimeout(() => {
+            window.location.href = `${targetPage}.html`;
+        }, 400); // Tiempo acorde al CSS transition
     }
 }
 
@@ -92,6 +99,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (leftArrow && currentIndex === 0) leftArrow.style.display = 'none';
     if (rightArrow && currentIndex === pages.length - 1) rightArrow.style.display = 'none';
+
+    document.body.classList.add("page-loaded")
 });
 
 window.addEventListener("load", () => {

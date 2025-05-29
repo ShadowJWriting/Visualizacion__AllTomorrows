@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Población de Cyborgs a Través del Tiempo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #121212;
+            font-family: 'Courier New', monospace;
+            color: #0ef0a0;
+        }
+        #chart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background:
+                radial-gradient(circle at center, rgba(20, 20, 30, 1) 0%, rgba(10, 10, 20, 1) 100%),
+                linear-gradient(to bottom,
+                    rgba(14, 240, 160, 0.03) 1px,
+                    transparent 1px);
+            background-size: 100% 100%, 8px 8px;
+        }
+        .title {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #0ef0a0;
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px #0ef0a0;
+            z-index: 100;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .event-mark {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff3e6d;
+            font-size: 1.5rem;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            text-shadow: 0 0 8px #ff3e6d;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="chart-container">
+        <div class="title">POBLACIÓN DE CYBORGS A TRAVÉS DEL TIEMPO</div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        // Configuración estilo terminal futurista con la paleta del primer gráfico
+        Chart.defaults.color = '#0ef0a0';
+        Chart.defaults.borderColor = 'rgba(14, 240, 160, 0.2)';
+        Chart.defaults.font.family = "'Courier New', monospace";
+
+        // Estimación de la población humana para los siglos futuros (solo para referencia)
+        const humanPopulationMillions = [10000, 11000, 12000, 13000, 16000, 18000, 23000];
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['XXI D.Qu', 'XXIII D.Qu', 'XXV D.Qu', 'XXVII D.Qu', 'XXX D.Qu', 'XL D.Qu', 'L D.Qu'],
+                datasets: [{
+                    label: 'Población de Cyborgs (millones)',
+                    data: [
+                        humanPopulationMillions[0] * 0 / 100,
+                        humanPopulationMillions[1] * 5 / 100,
+                        humanPopulationMillions[2] * 18 / 100,
+                        humanPopulationMillions[3] * 32 / 100,
+                        humanPopulationMillions[4] * 60 / 100,
+                        humanPopulationMillions[5] * 78 / 100,
+                        humanPopulationMillions[6] * 95 / 100
+                    ],
+                    borderColor: '#0ef0a0',
+                    borderWidth: 3,
+                    backgroundColor: 'rgba(14, 240, 160, 0.1)',
+                    fill: true,
+                    pointBackgroundColor: '#0ef0a0',
+                    pointRadius: 2,
+                    pointHoverRadius: 6,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.y;
+                                let cyborgText;
+                                if (value >= 1000) {
+                                    cyborgText = `${(value / 1000).toFixed(1)} billones`;
+                                } else {
+                                    cyborgText = `${value.toFixed(0)} millones`;
+                                }
+                                return `Población de cyborgs: ${cyborgText}`;
+                            },
+                            afterLabel: function(context) {
+                                const century = context.label;
+                                if (century === 'XL') return 'Siglo XL d.C. (Iniciativa Neosintética Global)';
+                                if (century === 'L') return 'Siglo L d.C. (Integración casi total)';
+                            }
+                        },
+                        backgroundColor: 'rgba(20, 20, 30, 0.95)',
+                        titleColor: '#0ef0a0',
+                        bodyColor: '#ffffff',
+                        borderColor: '#0ef0a0',
+                        borderWidth: 1,
+                        bodyFont: {
+                            size: 14,
+                            family: "'Courier New', monospace"
+                        },
+                        titleFont: {
+                            family: 'Orbitron'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'SIGLO (d.C.)',
+                            color: '#0ef0a0',
+                            font: {
+                                size: 16,
+                                weight: 'bold',
+                                family: 'Orbitron'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(14, 240, 160, 0.1)',
+                            drawTicks: false
+                        },
+                        ticks: {
+                            color: '#0ef0a0'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'POBLACIÓN DE CYBORGS',
+                            color: '#0ef0a0',
+                            font: {
+                                size: 16,
+                                weight: 'bold',
+                                family: 'Orbitron'
+                            }
+                        },
+                        min: 0,
+                        grid: {
+                            color: 'rgba(14, 240, 160, 0.1)'
+                        },
+                        ticks: {
+                            color: '#0ef0a0',
+                            callback: function(value) {
+                                if (value >= 1000) {
+                                    return (value / 1000).toFixed(0) + 'B';
+                                }
+                                return value.toFixed(0) + 'M';
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        hoverBorderColor: '#0ef0a0',
+                        hoverBorderWidth: 2
+                    }
+                },
+                animation: {
+                    duration: 3000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+
+        // Efecto de escaneo con los nuevos colores
+        const container = document.getElementById('chart-container');
+        let scanPosition = 0;
+
+        function animateScan() {
+            scanPosition = (scanPosition + 0.5) % 100;
+            container.style.background = `
+                radial-gradient(circle at center, rgba(20, 20, 30, 1) 0%, rgba(10, 10, 20, 1) 100%),
+                linear-gradient(to bottom,
+                    rgba(14, 240, 160, 0.03) 1px,
+                    transparent 1px),
+                linear-gradient(to bottom,
+                    transparent ${scanPosition}%,
+                    rgba(14, 240, 160, 0.05) ${scanPosition}%,
+                    rgba(14, 240, 160, 0.1) ${scanPosition + 5}%,
+                    transparent ${scanPosition + 10}%)`;
+            requestAnimationFrame(animateScan);
+        }
+
+        animateScan();
+    </script>
+</body>
+</html>

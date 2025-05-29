@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astralis - Evolución de la Población Cyborg</title>
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three-globe@2.24.0/dist/three-globe.min.js"></script>
+    <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff00ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --grid-color: rgba(15, 240, 252, 0.1);
+            --cyborg-blue: #1E90FF;
+            --cyborg-teal: #40E0D0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', 'Arial', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        #globe-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .cyber-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .cyber-btn {
+            background: var(--darker-bg);
+            color: var(--cyborg-teal);
+            border: 1px solid var(--cyborg-blue);
+            padding: 12px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px var(--cyborg-blue), 
+                        inset 0 0 5px var(--cyborg-blue);
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        .cyber-btn:hover {
+            color: var(--cyborg-teal);
+            border-color: var(--cyborg-teal);
+            box-shadow: 0 0 20px var(--cyborg-teal), 
+                       inset 0 0 10px var(--cyborg-teal);
+            text-shadow: 0 0 5px var(--cyborg-teal);
+        }
+        
+        .title-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .title-main {
+            color: var(--cyborg-teal);
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 0 0 10px var(--cyborg-teal);
+            letter-spacing: 3px;
+        }
+        
+        .title-sub {
+            color: var(--cyborg-blue);
+            font-size: 1em;
+            margin: 5px 0 0 0;
+            text-shadow: 0 0 5px var(--cyborg-blue);
+            letter-spacing: 2px;
+        }
+        
+        .era-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .era-info {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(5, 5, 16, 0.7);
+            border: 1px solid var(--cyborg-blue);
+            padding: 10px 15px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px var(--cyborg-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9em;
+            max-width: 300px;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+        
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: var(--cyborg-teal);
+            border-style: solid;
+            border-width: 0;
+            pointer-events: none;
+            z-index: 1001;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(5, 5, 16, 0.9);
+            border: 1px solid var(--cyborg-teal);
+            border-radius: 3px;
+            padding: 8px 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8em;
+            pointer-events: none;
+            z-index: 1002;
+            box-shadow: 0 0 10px var(--cyborg-teal);
+            max-width: 200px;
+            display: none;
+        }
+        
+        .population-scale {
+            position: absolute;
+            bottom: 180px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(5, 5, 16, 0.7);
+            border: 1px solid var(--cyborg-blue);
+            padding: 10px 15px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px var(--cyborg-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8em;
+        }
+        
+        .scale-circle {
+            display: inline-block;
+            border-radius: 50%;
+            background-color: rgba(64, 224, 208, 0.5);
+            border: 1px solid var(--cyborg-teal);
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="globe-container"></div>
+    <div class="tooltip" id="globe-tooltip"></div>
+    
+    <div class="title-overlay">
+        <h1 class="title-main">POBLACIÓN DE ASTRALIS</h1>
+        <p class="title-sub">Evolución Cyborg - Siglo XXI al L d.C.</p>
+    </div>
+    
+    <div class="cyber-controls">
+        <button class="cyber-btn" id="reset-view">Reset View</button>
+        <button class="cyber-btn" id="auto-rotate">Auto Rotate</button>
+    </div>
+    
+    <div class="era-info">
+        <h3 style="color: var(--cyborg-teal); margin-top: 0;">ERA: <span id="era-name">SIGLO XXI</span></h3>
+        <p style="margin-bottom: 5px;"><span style="color: var(--cyborg-blue);">AÑO:</span> <span id="era-year">2100 D.C.</span></p>
+        <p style="margin-bottom: 5px;"><span style="color: var(--cyborg-blue);">POBLACIÓN:</span> <span id="era-population">0 millones</span></p>
+        <p style="margin-bottom: 5px;"><span style="color: var(--cyborg-blue);">TECNOLOGÍA:</span> <span id="era-tech">Primeros prototipos</span></p>
+        <p style="margin-bottom: 0;"><span style="color: var(--cyborg-blue);">ESTADO:</span> <span class="pulse">ACTIVO</span></p>
+    </div>
+    
+    <div class="population-scale" id="population-scale">
+        <h4 style="color: var(--cyborg-blue); margin-top: 0; margin-bottom: 10px;">ESCALA DE POBLACIÓN</h4>
+        <div><span class="scale-circle" style="width: 10px; height: 10px;"></span> <span>100,000</span></div>
+        <div><span class="scale-circle" style="width: 20px; height: 20px;"></span> <span>1 millón</span></div>
+        <div><span class="scale-circle" style="width: 30px; height: 30px;"></span> <span>10 millones</span></div>
+        <div><span class="scale-circle" style="width: 40px; height: 40px;"></span> <span>100 millones</span></div>
+    </div>
+    
+    <div class="era-controls">
+        <button class="cyber-btn" id="prev-era">◄ Era Anterior</button>
+        <button class="cyber-btn" id="next-era">Era Siguiente ►</button>
+    </div>
+    
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <script>
+        // Datos de población de Astralis (cyborgs) basados en el primer gráfico
+        const humanPopulationMillions = [10000, 11000, 12000, 13000, 10000, 8000, 5000];
+        const cyborgPopulationPercent = [0, 5, 18, 32, 60, 78, 95];
+        
+        // Eras de Astralis con datos del primer gráfico
+        const astralisEras = [
+            { // 0: Siglo XXI (2100 D.C.)
+                name: "SIGLO XXI",
+                year: "2100 D.C.",
+                population: "0 millones",
+                tech: "Primeros prototipos",
+                points: [],
+                showNightLights: true
+            },
+            { // 1: Siglo XXIII (2300 D.C.)
+                name: "SIGLO XXIII",
+                year: "2300 D.C.",
+                population: `${(humanPopulationMillions[1] * cyborgPopulationPercent[1] / 100).toFixed(1)} millones`,
+                tech: "Primeras integraciones",
+                points: [
+                    { lat: 40, lng: -100, size: 1.0, color: 'rgba(30, 144, 255, 0.7)', name: "Norteamérica", population: "5,000,000" },
+                    { lat: 50, lng: 10, size: 0.8, color: 'rgba(30, 144, 255, 0.7)', name: "Europa", population: "4,000,000" },
+                    { lat: 35, lng: 105, size: 1.2, color: 'rgba(30, 144, 255, 0.7)', name: "Asia", population: "6,000,000" }
+                ],
+                showNightLights: true
+            },
+            { // 2: Siglo XXV (2500 D.C.)
+                name: "SIGLO XXV",
+                year: "2500 D.C.",
+                population: `${(humanPopulationMillions[2] * cyborgPopulationPercent[2] / 100).toFixed(1)} millones`,
+                tech: "Mejoras generalizadas",
+                points: [
+                    { lat: 40, lng: -100, size: 2.5, color: 'rgba(30, 144, 255, 0.7)', name: "Norteamérica", population: "50,000,000" },
+                    { lat: 50, lng: 10, size: 2.0, color: 'rgba(30, 144, 255, 0.7)', name: "Europa", population: "40,000,000" },
+                    { lat: 35, lng: 105, size: 3.0, color: 'rgba(30, 144, 255, 0.7)', name: "Asia", population: "60,000,000" },
+                    { lat: -30, lng: 150, size: 0.5, color: 'rgba(30, 144, 255, 0.7)', name: "Oceanía", population: "10,000,000" }
+                ],
+                showNightLights: true
+            },
+            { // 3: Siglo XXVII (2700 D.C.)
+                name: "SIGLO XXVII",
+                year: "2700 D.C.",
+                population: `${(humanPopulationMillions[3] * cyborgPopulationPercent[3] / 100).toFixed(1)} millones`,
+                tech: "Integración avanzada",
+                points: [
+                    { lat: 40, lng: -100, size: 4.0, color: 'rgba(30, 144, 255, 0.7)', name: "América", population: "200,000,000" },
+                    { lat: 50, lng: 10, size: 3.5, color: 'rgba(30, 144, 255, 0.7)', name: "Europa", population: "150,000,000" },
+                    { lat: 35, lng: 105, size: 5.0, color: 'rgba(30, 144, 255, 0.7)', name: "Asia", population: "300,000,000" },
+                    { lat: -30, lng: 150, size: 1.0, color: 'rgba(30, 144, 255, 0.7)', name: "Oceanía", population: "50,000,000" },
+                    { lat: -10, lng: -60, size: 1.5, color: 'rgba(30, 144, 255, 0.7)', name: "África", population: "80,000,000" }
+                ],
+                showNightLights: true
+            },
+            { // 4: Siglo XXX (3000 D.C.)
+                name: "SIGLO XXX",
+                year: "3000 D.C.",
+                population: `${(humanPopulationMillions[4] * cyborgPopulationPercent[4] / 100 / 1000).toFixed(1)} billones`,
+                tech: "Mayoría cyborg",
+                points: [
+                    { lat: 40, lng: -100, size: 6.0, color: 'rgba(30, 144, 255, 0.7)', name: "América", population: "2,000,000,000" },
+                    { lat: 50, lng: 10, size: 5.5, color: 'rgba(30, 144, 255, 0.7)', name: "Europa", population: "1,500,000,000" },
+                    { lat: 35, lng: 105, size: 7.0, color: 'rgba(30, 144, 255, 0.7)', name: "Asia", population: "4,000,000,000" },
+                    { lat: -30, lng: 150, size: 2.0, color: 'rgba(30, 144, 255, 0.7)', name: "Oceanía", population: "500,000,000" },
+                    { lat: -10, lng: -60, size: 3.0, color: 'rgba(30, 144, 255, 0.7)', name: "África", population: "1,000,000,000" },
+                    { lat: 20, lng: 50, size: 1.0, color: 'rgba(64, 224, 208, 0.7)', name: "Luna", population: "100,000,000" }
+                ],
+                showNightLights: true
+            },
+            { // 5: Siglo XL (4000 D.C.)
+                name: "SIGLO XL",
+                year: "4000 D.C.",
+                population: `${(humanPopulationMillions[5] * cyborgPopulationPercent[5] / 100 / 1000).toFixed(1)} billones`,
+                tech: "Iniciativa Neosintética",
+                points: [
+                    { lat: 40, lng: -100, size: 7.0, color: 'rgba(30, 144, 255, 0.7)', name: "Tierra", population: "6,000,000,000" },
+                    { lat: 20, lng: 50, size: 3.0, color: 'rgba(64, 224, 208, 0.7)', name: "Luna", population: "1,000,000,000" },
+                    { lat: 10, lng: 100, size: 2.0, color: 'rgba(64, 224, 208, 0.7)', name: "Marte", population: "500,000,000" },
+                    { lat: 0, lng: 0, size: 1.5, color: 'rgba(64, 224, 208, 0.7)', name: "Estaciones orbitales", population: "300,000,000" }
+                ],
+                showNightLights: true
+            },
+            { // 6: Siglo L (5000 D.C.)
+                name: "SIGLO L",
+                year: "5000 D.C.",
+                population: `${(humanPopulationMillions[6] * cyborgPopulationPercent[6] / 100 / 1000).toFixed(1)} billones`,
+                tech: "Integración casi total",
+                points: [
+                    { lat: 40, lng: -100, size: 8.0, color: 'rgba(30, 144, 255, 0.7)', name: "Tierra", population: "4,000,000,000" },
+                    { lat: 20, lng: 50, size: 4.0, color: 'rgba(64, 224, 208, 0.7)', name: "Luna", population: "2,000,000,000" },
+                    { lat: 10, lng: 100, size: 3.0, color: 'rgba(64, 224, 208, 0.7)', name: "Marte", population: "1,500,000,000" },
+                    { lat: -10, lng: -80, size: 2.0, color: 'rgba(64, 224, 208, 0.7)', name: "Europa (luna)", population: "1,000,000,000" },
+                    { lat: 0, lng: 0, size: 6.0, color: 'rgba(64, 224, 208, 0.7)', name: "Colonias orbitales", population: "3,000,000,000" }
+                ],
+                showNightLights: true
+            }
+        ];
+
+        // Inicialización del globo
+        const globe = new ThreeGlobe()
+            .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+            .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+            .showAtmosphere(true)
+            .atmosphereColor('rgba(30, 144, 255, 0.2)')  // Azul dodger
+            .atmosphereAltitude(0.25);
+
+        // Configuración de Three.js
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('globe-container').appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        scene.add(globe);
+        scene.add(new THREE.AmbientLight(0xcccccc));
+        scene.add(new THREE.DirectionalLight(0xffffff, 0.8));
+
+        const camera = new THREE.PerspectiveCamera();
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        camera.position.z = 300;
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = true;
+        controls.zoomSpeed = 0.5;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+
+        // Manejo del redimensionamiento
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Tooltip
+        const tooltip = document.getElementById('globe-tooltip');
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        // Función para manejar el movimiento del ratón
+        function onMouseMove(event) {
+            // Calcular posición normalizada del ratón
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            
+            // Actualizar el rayo
+            raycaster.setFromCamera(mouse, camera);
+            
+            // Verificar intersecciones con los puntos
+            const intersects = raycaster.intersectObjects(globe.hexBins());
+            
+            if (intersects.length > 0) {
+                const intersect = intersects[0];
+                const pointData = intersect.object.userData;
+                
+                // Mostrar tooltip con información del punto
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${event.clientX + 15}px`;
+                tooltip.style.top = `${event.clientY + 15}px`;
+                tooltip.innerHTML = `<strong style="color: var(--cyborg-teal)">${pointData.name}</strong><br>Población Cyborg: ${pointData.population}`;
+            } else {
+                tooltip.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('mousemove', onMouseMove, false);
+
+        // Animación
+        (function animate() {
+            controls.update();
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        })();
+
+        // Estado actual
+        let currentEra = 0;
+        let autoRotate = true;
+
+        // Función para actualizar la visualización según la era
+        function updateEra(eraIndex) {
+            currentEra = eraIndex;
+            const era = astralisEras[eraIndex];
+            
+            // Actualizar información de la era
+            document.getElementById('era-name').textContent = era.name;
+            document.getElementById('era-year').textContent = era.year;
+            document.getElementById('era-population').textContent = era.population;
+            document.getElementById('era-tech').textContent = era.tech;
+            
+            // Actualizar puntos en el globo como círculos
+            globe.ringsData(era.points)
+                .ringColor(d => d.color)
+                .ringMaxRadius('size')
+                .ringPropagationSpeed(0)
+                .ringRepeatPeriod(0);
+            
+            // Configurar tooltips para los puntos
+            globe.ringLat(d => d.lat)
+                .ringLng(d => d.lng)
+                .ringAltitude(0.01)
+                .ringLabel(d => `${d.name}<br>Población Cyborg: ${d.population}`);
+            
+            // Cambiar color de la atmósfera para reflejar la integración cyborg
+            const integrationLevel = eraIndex / (astralisEras.length - 1);
+            const atmosphereColor = new THREE.Color(0x1E90FF); // Azul dodger
+            atmosphereColor.lerp(new THREE.Color(0x40E0D0), integrationLevel); // Hacia aguamarina
+            globe.atmosphereColor(`rgba(${atmosphereColor.r * 255}, ${atmosphereColor.g * 255}, ${atmosphereColor.b * 255}, 0.2)`);
+        }
+
+        // Controles
+        document.getElementById('reset-view').addEventListener('click', () => {
+            controls.reset();
+            camera.position.z = 300;
+        });
+
+        document.getElementById('auto-rotate').addEventListener('click', () => {
+            autoRotate = !autoRotate;
+            controls.autoRotate = autoRotate;
+            document.getElementById('auto-rotate').textContent = 
+                autoRotate ? 'Stop Rotation' : 'Auto Rotate';
+        });
+
+        document.getElementById('prev-era').addEventListener('click', () => {
+            if (currentEra > 0) {
+                updateEra(currentEra - 1);
+            }
+        });
+
+        document.getElementById('next-era').addEventListener('click', () => {
+            if (currentEra < astralisEras.length - 1) {
+                updateEra(currentEra + 1);
+            }
+        });
+
+        // Inicializar con la primera era
+        updateEra(0);
+
+        // Permitir navegación por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentEra > 0) {
+                updateEra(currentEra - 1);
+            } else if (e.key === 'ArrowRight' && currentEra < astralisEras.length - 1) {
+                updateEra(currentEra + 1);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>STATS DE LOS ASTRALIS</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #40E0D0; /* Aguamarina */
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 10px;
+            background: linear-gradient(135deg, #1a2a3a 0%, #0a0a1a 100%); /* Degradado azul oscuro */
+        }
+        .chart-container {
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+            background: rgba(20, 30, 40, 0.9); /* Fondo azul oscuro */
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 0 15px #40E0D0; /* Sombra aguamarina */
+            border: 1px solid #1E90FF; /* Borde azul dodger */
+        }
+        h1 {
+            text-align: center;
+            color: #40E0D0; /* Aguamarina */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            text-shadow: 0 0 8px #40E0D0; /* Sombra aguamarina */
+            margin: 5px 0;
+            letter-spacing: 2px;
+        }
+        .custom-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 30, 40, 0.8); /* Fondo azul oscuro */
+            padding: 4px 8px;
+            border-radius: 15px;
+            border: 1px solid #1E90FF; /* Borde azul dodger */
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.3s;
+            color: #40E0D0; /* Texto aguamarina */
+        }
+        .legend-item:hover {
+            background: rgba(64, 224, 208, 0.2); /* Fondo aguamarina claro */
+            transform: scale(1.05);
+        }
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        #radarChart {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 350px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chart-container">
+        <h1>STATS DE LOS ASTRALIS</h1>
+        <div class="custom-legend" id="legend-container"></div>
+        <canvas id="radarChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['🔧 Tecnología', '🏛️ Organización', '🎭 Cultura', '📚 Ciencia', '🚢 Comercio', '👥 Población'],
+                datasets: [
+                    {
+                        label: 'LÍMITES HUMANOS',
+                        data: [100, 100, 100, 100, 100, 100],
+                        borderColor: '#1E90FF', /* Azul dodger */
+                        backgroundColor: 'rgba(30, 144, 255, 0.2)', /* Azul dodger con transparencia */
+                        pointBackgroundColor: '#1E90FF', /* Azul dodger */
+                        pointRadius: 4,
+                        borderWidth: 2,
+                    },
+                    {
+                        label: 'ASTRALIS',
+                        data: [600, 1000, 500, 500, 400, 500],
+                        borderColor: '#40E0D0', /* Aguamarina */
+                        backgroundColor: 'rgba(64, 224, 208, 0.2)', /* Aguamarina con transparencia */
+                        pointBackgroundColor: '#40E0D0', /* Aguamarina */
+                        pointRadius: 4,
+                        borderWidth: 2,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        backgroundColor: 'rgba(0, 10, 20, 0.9)', /* Fondo azul oscuro */
+                        titleColor: '#40E0D0', /* Aguamarina */
+                        bodyColor: '#ffffff',
+                        borderColor: '#40E0D0', /* Aguamarina */
+                        borderWidth: 1,
+                        bodyFont: { family: 'Courier New' },
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(64, 224, 208, 0.3)' }, /* Aguamarina con transparencia */
+                        grid: { color: 'rgba(64, 224, 208, 0.2)' }, /* Aguamarina con transparencia */
+                        suggestedMin: 0,
+                        suggestedMax: 1000,
+                        ticks: { 
+                            backdropColor: 'transparent',
+                            color: '#40E0D0', /* Aguamarina */
+                            stepSize: 200,
+                            font: { size: 9, family: 'Courier New' }
+                        },
+                        pointLabels: { 
+                            color: '#40E0D0', /* Aguamarina */
+                            font: { size: 11, family: 'Courier New' }
+                        }
+                    }
+                },
+                elements: {
+                    line: { tension: 0.1 },
+                }
+            }
+        });
+
+        // Leyenda interactiva
+        const legendContainer = document.getElementById('legend-container');
+        chart.data.datasets.forEach((dataset, i) => {
+            const legendItem = document.createElement('div');
+            legendItem.className = 'legend-item';
+            legendItem.style.borderColor = dataset.borderColor;
+            legendItem.style.color = dataset.borderColor;
+            legendItem.innerHTML = `
+                <div class="legend-color" style="background:${dataset.borderColor};"></div>
+                <span>${dataset.label}</span>
+            `;
+            legendItem.onclick = () => {
+                const meta = chart.getDatasetMeta(i);
+                meta.hidden = !meta.hidden;
+                chart.update();
+                legendItem.style.opacity = meta.hidden ? '0.5' : '1';
+                legendItem.style.boxShadow = meta.hidden ? 'none' : `0 0 5px ${dataset.borderColor}`;
+            };
+            legendContainer.appendChild(legendItem);
+        });
+    </script>
+</body>
+</html>
