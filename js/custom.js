@@ -78,14 +78,7 @@ function navigate(direction) {
 
     if (targetIndex >= 0 && targetIndex < pages.length) {
         const targetPage = pages[targetIndex];
-
-        // Agrega efecto de salida y luego redirecciona
-        document.body.classList.remove("page-loaded");
-        document.body.classList.add("page-transition");
-
-        setTimeout(() => {
-            window.location.href = `${targetPage}.html`;
-        }, 400); // Tiempo acorde al CSS transition
+        window.location.href = `${targetPage}.html`;
     }
 }
 
