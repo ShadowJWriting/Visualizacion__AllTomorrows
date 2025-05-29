@@ -39,31 +39,18 @@ function outsideClick(event) {
 }
 
 // Órganos: cargar con iframe
-function focusOrgan(element) {
-    // Obtiene la ruta del órgano desde el atributo data-organ-src
-    const organSrc = element.getAttribute('data-organ-src');
-    if (!organSrc) return;
-
-    // Muestra el modal
-    const organModal = document.getElementById('organModal');
-    organModal.style.display = 'block';
-
-    // Carga el contenido del órgano en el modal usando un iframe
+function focusOrgan(el) {
+    const organSrc = el.dataset.organSrc;
     const organContent = document.getElementById('organContent');
-    // Limpia el contenido anterior
-    organContent.innerHTML = '';
+    const organModal = document.getElementById('organModal');
 
-    // Crea un nuevo iframe para cargar el HTML del órgano
-    const iframe = document.createElement('iframe');
-    iframe.src = organSrc;
-    iframe.width = '100%';
-    iframe.height = '700px';
-    iframe.style.border = 'none';
-    iframe.allow = 'fullscreen; autoplay;';
-
-    organContent.appendChild(iframe);
+    if (organSrc) {
+        organContent.innerHTML = `
+            <iframe src="${organSrc}" frameborder="0" style="width:100%; height:90vh;"></iframe>
+        `;
+        organModal.classList.add('show');
+    }
 }
-
 
 // Cierre de modal de órganos
 function closeOrganModal(event) {
