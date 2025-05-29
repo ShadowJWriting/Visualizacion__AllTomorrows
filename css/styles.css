@@ -19,7 +19,7 @@ body {
     align-items: center;
     position: relative;
     flex-wrap: wrap;
-    z-index: 10;
+    z-index: 10000;
 }
 
 .panel {
