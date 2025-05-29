@@ -149,16 +149,11 @@ h3, p {
     }
 
 .anatomy-center {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #111;
-    border-radius: 12px;
-    height: 600px;
-    min-width: 300px;
-    position: relative;
     overflow: hidden;
+    padding-bottom: 30px;
 }
 
     .anatomy-center img {
@@ -167,12 +162,6 @@ h3, p {
         object-fit: contain;
         filter: drop-shadow(0 0 8px #0ff);
     }
-
-model-viewer {
-    width: 100%;
-    height: 100vh; /* Asegura que ocupe la pantalla completa */
-    background-color: transparent; /* o blanco para pruebas */
-}
 
 .navigation {
     position: absolute;
@@ -216,37 +205,6 @@ model-viewer {
         background-color: #00ffff11;
         box-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
     }
-
-    .nav-arrow img {
-        width: 40px;
-        height: 40px;
-        filter: drop-shadow(0 0 2px #0ff);
-        transition: transform 0.2s ease;
-    }
-
-    .nav-arrow:hover img {
-        transform: scale(1.1);
-    }
-
-    .nav-arrow.right img {
-        transform: scaleX(-1);
-    }
-
-    .nav-arrow.right:hover img {
-        transform: scaleX(-1) scale(1.1);
-    }
-
-.page-transition {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.page-loaded {
-    opacity: 1;
-    transform: translateX(0);
-}
-
 
 /* Prueba */
 .hologram-wrapper {
