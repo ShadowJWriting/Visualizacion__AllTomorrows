@@ -988,7 +988,7 @@ model-viewer {
     height: 48px;
     opacity: 0.9;
     transition: transform 0.2s ease, opacity 0.2s ease;
-    z-index: 105000;
+    z-index: auto;
 }
 
     #exitButton:hover {
