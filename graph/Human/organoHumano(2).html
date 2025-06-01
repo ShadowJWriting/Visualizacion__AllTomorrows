@@ -197,9 +197,18 @@
         <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
         <div class="organ-image-container">
-            <img src="../../img/LiverBase.png" alt="Imagen anatómica del cerebro" class="organ-image">
-            <div class="image-caption">Corte anatómico del hígado humano</div>
+            <model-viewer class="organ-model"
+                          src="../../FBX/glb/Higado.glb"
+                          camera-controls
+                          auto-rotate
+                          alt="Modelo 3D de un corazón anatómico">
+            </model-viewer>
         </div>
+
+        <!--<div class="organ-image-container">
+        <img src="../../img/LiverBase.png" alt="Imagen anatómica del cerebro" class="organ-image">
+        <div class="image-caption">Corte anatómico del hígado humano</div>
+    </div>-->
 
         <div class="step step1">
             <div class="box shape-1">
